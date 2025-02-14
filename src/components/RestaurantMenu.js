@@ -8,7 +8,6 @@ const RestaurantMenu = () => {
   const { resId } = useParams();
 
   const resInfo = useRestaurantMenu(resId);
-  // const [showIndex, setShowIndex] = useState(null);
   if (resInfo === null) return <Shimmer />;
 
   const {
@@ -29,37 +28,39 @@ const RestaurantMenu = () => {
         c.card?.card?.["@type"] ===
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     );
-  // console.log(categories);
+
   return (
-    <div className="flex-col justify-center items-center m-4">
-      <div className="flex-col items-center justify-center mx-auto shadow-lg rounded-3xl bg-slate-200 p-4 w-5/12">
-        <h1 className="text-center text-3xl text-slate-700 font-bold my-2 rounded-2xl bg-slate-300 p-2">
+    <div className="flex-col justify-center items-center m-4 space-y-8">
+      {/* Restaurant Info */}
+      <div className="flex-col items-center justify-center mx-auto shadow-xl rounded-3xl bg-white p-6 w-full sm:w-10/12 md:w-8/12 lg:w-7/12">
+        <h1 className="text-center text-4xl text-[#2c3e50] font-extrabold mb-4 bg-gradient-to-r from-[#FF6F61] to-[#FF3B3F] text-transparent bg-clip-text p-2 rounded-xl">
           {name}
         </h1>
-        <div className="flex-col justify-center items-center">
-          <h2 className="text-center font-custom underline hover:underline-offset-4 transition-all ease duration-1000 text-lg rounded-2xl bg-slate-300 p-2">
+        <div className="flex flex-col items-center justify-center space-y-4">
+          <h2 className="text-center font-custom text-xl text-[#7f8c8d] underline hover:underline-offset-4 transition-all duration-300 bg-slate-200 rounded-2xl py-2 px-4">
             {cuisines.join(", ")}
           </h2>
-          <h3 className="text-md my-2">{areaname}</h3>
-          <div className="flex justify-center items-center gap-4 bg-slate-300 rounded-2xl">
-            <h3 className="text-slate-800 text-md my-2">{avgRating}</h3>
-            <h3 className="text-md my-2">{totalRatingsString}</h3>
-            <h3>•</h3>
-            <h3 className="text-md my-2">{costForTwoMessage}</h3>
+          <h3 className="text-md text-[#95a5a6]">{areaname}</h3>
+
+          <div className="flex justify-center items-center gap-6 bg-slate-100 rounded-2xl p-4 shadow-md">
+            <h3 className="text-[#16a085] text-lg font-semibold">{avgRating} ⭐</h3>
+            <h3 className="text-[#7f8c8d] text-lg">{totalRatingsString}</h3>
+            <h3 className="text-[#7f8c8d]">•</h3>
+            <h3 className="text-[#16a085] text-lg">{costForTwoMessage}</h3>
           </div>
-          <h3 className="text-center text-md my-2 bg-slate-300 rounded-2xl p-2">
-            Delivery in : {sla.slaString}
+
+          <h3 className="text-center text-md text-[#34495e] bg-slate-200 rounded-2xl p-4 mt-4">
+            Delivery in: {sla.slaString}
           </h3>
         </div>
       </div>
-      <div className="flex-col items-center justify-center">
+
+      {/* Restaurant Menu Categories */}
+      <div className="flex-col items-center justify-center space-y-8 w-full">
         {categories.map((category, index) => (
-          // is we remove the comment of line 11, 61, 62 then this is a controlled component
           <RestaurantCategory
             key={category?.card?.card?.title}
             info={category?.card?.card}
-            // showItems={index === showIndex && true}
-            // setShowIndex={() => setShowIndex(index)}
           />
         ))}
       </div>
