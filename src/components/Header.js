@@ -51,7 +51,7 @@ const Header = () => {
       {/* Online Status and Footer */}
       <div className="bg-[#F9F9F9] py-1 text-center text-sm text-gray-500">
         <div>
-          Online Status: <span className={onlineStatus ? "text-green-500" : "text-red-500"}>{onlineStatus ? "✅" : "🚫"}</span>
+          Active Status: <span className={onlineStatus ? "text-green-500" : "text-red-500"}>{onlineStatus ? "✅" : "🚫"}</span>
         </div>
       </div>
     </div>

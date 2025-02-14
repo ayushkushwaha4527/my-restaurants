@@ -4,6 +4,7 @@ import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import Footer from "./Footer";
 
 const Body = () => {
   const [ListOfRestaurants, setListOfRestaurants] = useState([]);
@@ -45,7 +46,7 @@ const Body = () => {
   }
 
   return (
-    <div className="bg-gray-50 min-h-screen pb-12">
+    <div className="bg-gradient-to-t from-gray-50 via-white to-gray-100 min-h-screen pb-12">
       <div className="container mx-auto px-6 py-12">
         {/* Search and Filter Section */}
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 md:space-x-6 mb-8">
@@ -53,12 +54,12 @@ const Body = () => {
             <input
               type="text"
               placeholder="Search for a restaurant..."
-              className="w-full py-3 px-4 rounded-lg text-lg border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+              className="w-full py-3 px-4 rounded-lg text-lg border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 shadow-md"
               value={searchText}
               onChange={(e) => setsearchText(e.target.value)}
             />
             <button
-              className="bg-blue-500 text-white text-lg font-semibold py-3 px-6 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+              className="bg-blue-600 text-white text-lg font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
               onClick={() => {
                 const filteredRestaurant = ListOfRestaurants.filter((res) =>
                   res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -71,7 +72,7 @@ const Body = () => {
           </div>
 
           <button
-            className="bg-yellow-400 text-gray-800 text-lg font-semibold py-3 px-6 rounded-lg hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
+            className="bg-yellow-500 text-gray-800 text-lg font-semibold py-3 px-6 rounded-lg hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
             onClick={() => {
               const filteredList = ListOfRestaurants.filter(
                 (res) => res.info.avgRating > 4.3
@@ -100,6 +101,7 @@ const Body = () => {
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
